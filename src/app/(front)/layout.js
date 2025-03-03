@@ -9,11 +9,11 @@ export default function FrontLayout({ children }) {
 
   return (
     <>
-      {pathname !== '/login' && <Header />}
+      {pathname !== '/login' && pathname !== '/reset-password' && pathname !== '/otp' && <Header />}
 
       {children}
 
-      {pathname !== '/login' && <Footer />}
+      {pathname !== '/login' && pathname !== '/reset-password' && pathname !== '/otp' && <Footer />}
     </>
   );
 }

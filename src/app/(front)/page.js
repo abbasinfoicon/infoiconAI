@@ -15,7 +15,6 @@ const Home = () => {
       <About />
       <Feature />
       <Faq />
-      <Info />
 
     </main>
   )

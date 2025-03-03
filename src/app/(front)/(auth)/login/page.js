@@ -1,11 +1,15 @@
 'use client'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 import { Envelope, Lock, LockFill, Person } from 'react-bootstrap-icons'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 
-const page = () => {
-    const [tabIndex, setTabIndex] = useState(0); // Manage tab index state
+const Login = () => {
+    const searchParams = useSearchParams();
+    const signin = searchParams.get('signin');
+
+    const [tabIndex, setTabIndex] = useState(signin ? 1 : 0); // Manage tab index state
 
     const changeSignup = () => {
         setTabIndex(1); // Switch to Signup tab
@@ -105,7 +109,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <Link href="" className="btn-solid w-100 text-center mt-4">Sign up</Link>
+                                        <button className="btn-solid w-100 text-center mt-4">Sign up</button>
                                         <h4 className="text-title text-center mt-2">Already have an account <button onClick={() => setTabIndex(0)} className='mainColor'>Sign in</button></h4>
                                     </form>
                                 </TabPanel>
@@ -118,4 +122,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Login

@@ -1,10 +1,10 @@
 import React from 'react'
 
-const About = () => {
+const About = ({ pg }) => {
     return (
         <>
             <section className="about-section section-b-space section-mb-space">
-                <div className="bg-effect"></div>
+                {pg !== 'page' && <div className="bg-effect"></div>}
                 <div className="container">
                     <div className="row g-md-5 g-4">
                         <div className="col-lg-6 order-lg-0 order-1">

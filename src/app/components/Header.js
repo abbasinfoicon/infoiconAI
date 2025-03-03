@@ -1,9 +1,11 @@
 'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { ArrowUpShort, ChevronDown } from 'react-bootstrap-icons';
 
 const Header = () => {
+    const pathname = usePathname();
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -39,8 +41,8 @@ const Header = () => {
 
                         <div className="offcanvas-body">
                             <ul className="navbar-nav">
-                                <li className="nav-item dropdown">
-                                    <Link className="nav-link dropdown-toggle" href="#">Features <ChevronDown className='text-[16px] ml-[10px]' /></Link>
+                                <li className={`nav-item dropdown ${pathname.startsWith('/features') ? 'active' : ''}`}>
+                                    <Link className="nav-link dropdown-toggle" href="/features">Features <ChevronDown className='text-[16px] ml-[10px]' /></Link>
                                     <ul className="dropdown-menu">
                                         <li><Link className="dropdown-item" href="/">Embeddable</Link></li>
                                         <li><Link className="dropdown-item" href="/">Configurable API</Link></li>
@@ -51,15 +53,15 @@ const Header = () => {
                                     </ul>
                                 </li>
 
-                                <li className="nav-item"><Link className="nav-link" href="/">pricing</Link></li>
-                                <li className="nav-item"><Link className="nav-link" href="/">docs <ArrowUpShort className="rotate-45 relative -top-[3px]" /></Link></li>
+                                <li className={`nav-item ${pathname.startsWith('/pricing') ? 'active' : ''}`}><Link className="nav-link" href="/pricing">pricing</Link></li>
+                                <li className={`nav-item ${pathname.startsWith('/docs') ? 'active' : ''}`}><Link className="nav-link" href="/docs" target='_blank'>docs <ArrowUpShort className="rotate-45 relative -top-[3px]" /></Link></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
-            <Link href="/" className="btn btn-theme mr-3 d-sm-inline-block d-none"><span>Login</span></Link>
-            <Link href="/" className="btn btn-theme d-sm-inline-block d-none"><span>Signin</span></Link>
+            <Link href="/login" className="btn btn-theme mr-3 d-sm-inline-block d-none"><span>Login</span></Link>
+            <Link href="/login?signin=true" className="btn btn-theme d-sm-inline-block d-none"><span>Signin</span></Link>
         </header >
     )
 }
