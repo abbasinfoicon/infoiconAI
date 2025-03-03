@@ -12785,7 +12785,8 @@ a:not([href]):not([class]):hover {
     color: rgba(var(--theme-color), 1);
 }
 
-a {
+a,
+.mainColor {
     text-decoration: none;
     color: rgba(var(--theme-color), 1);
 }
@@ -13497,6 +13498,10 @@ li {
     bottom: calc(10px + 3 * (100vw - 320px) / 1600);
     border-right: 1px solid rgba(var(--content-color), 1);
     padding-right: 14px;
+    width: 32px;
+    color: rgba(var(--content-color), 1);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .auth-form .form-group .iconsax svg [stroke] {
@@ -20037,7 +20042,7 @@ header .offcanvas-backdrop {
 
 .login-section .login-box .nav-tabs .nav-link {
     color: rgba(var(--content-color), 1);
-    width: 100%;
+    width: 50%;
     background-color: transparent;
     border: none;
     font-size: 20px;
@@ -20045,13 +20050,16 @@ header .offcanvas-backdrop {
     font-weight: 500;
     position: relative;
     outline: none;
+    cursor: pointer;
 }
 
-.login-section .login-box .nav-tabs .nav-link.active {
+.login-section .login-box .nav-tabs .nav-link.active,
+.login-section .login-box .nav-tabs .nav-link.react-tabs__tab--selected {
     color: rgba(var(--theme-color), 1);
 }
 
-.login-section .login-box .nav-tabs .nav-link.active:after {
+.login-section .login-box .nav-tabs .nav-link.active:after,
+.login-section .login-box .nav-tabs .nav-link.react-tabs__tab--selected:after {
     content: "";
     position: absolute;
     border-bottom: 2px solid rgba(var(--theme-color), 1);

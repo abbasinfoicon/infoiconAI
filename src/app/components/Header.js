@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { ArrowUp, ArrowUpShort, ChevronDown } from 'react-bootstrap-icons';
+import { ArrowUpShort, ChevronDown } from 'react-bootstrap-icons';
 
 const Header = () => {
     const [isSticky, setIsSticky] = useState(false);
