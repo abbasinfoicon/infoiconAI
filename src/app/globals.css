@@ -33,3 +33,54 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.jodit_theme_custom {
+  --jd-color-background-default: #0b1523;
+  /* Editor background */
+  --jd-color-border: #474c53;
+  /* Editor border */
+  --jd-color-panel: #123539;
+  /* Toolbar background */
+  --jd-color-icon: #9ca3af;
+  /* Toolbar icons */
+  --jd-color-text: #9ca3af;
+  /* Text color */
+  /* Add more variables as needed */
+}
+
+.jodit-toolbar__box:not(:empty),
+.jodit-container:not(.jodit_inline),
+.jodit-status-bar {
+  border-radius: 0 !important;
+}
+
+.jodit-toolbar-button__trigger svg {
+  fill: #fff;
+}
+
+.jodit-toolbar-button__trigger:hover svg {
+  fill: #000;
+}
+
+.jodit-toolbar-button__icon:empty+.jodit-toolbar-button__text:not(:empty) {
+  color: #9ca3af;
+}
+
+.img-ai {
+  display: flex;
+  justify-content: end;
+  opacity: 0.1;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--theme-color), 1);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

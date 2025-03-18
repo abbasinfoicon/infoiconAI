@@ -2,7 +2,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import 'react-tabs/style/react-tabs.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import './main.css'
+import { ToastContainer } from "react-toastify";
+import { StoreProvider } from "./lib/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +27,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="css_gredient"></div>
-        {children}
+        <StoreProvider>
+          <div className="css_gredient"></div>
+          {children}
+          <ToastContainer />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 'use client'
-import Breadcrumb from '@/app/components/Breadcrumb'
-import About from '@/app/components/home/About'
+import Breadcrumb from '@/components/Breadcrumb'
+import About from '@/components/home/About'
 import React from 'react'
 import Slider from "react-slick";
 

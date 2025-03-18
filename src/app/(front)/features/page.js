@@ -1,5 +1,6 @@
-import Breadcrumb from '@/app/components/Breadcrumb'
-import Feature from '@/app/components/home/Feature'
+
+import Breadcrumb from '@/components/Breadcrumb'
+import Feature from '@/components/home/Feature'
 import React from 'react'
 
 const Features = () => {

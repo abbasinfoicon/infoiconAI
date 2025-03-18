@@ -2,11 +2,34 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import { ArrowUpShort, ChevronDown } from 'react-bootstrap-icons';
+import { ArrowUpShort, BoxArrowRight, ChevronDown, Speedometer } from 'react-bootstrap-icons';
+import FetchData from './FetchApi';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const [user, setUser] = useState({});
     const pathname = usePathname();
     const [isSticky, setIsSticky] = useState(false);
+    const userls = useSelector((state) => state.user.data);
+
+    const getData = async () => {
+        try {
+            const res = await FetchData({ url: `auth/user/${userls._id}`, method: "GET" });
+            const result = await res.json();
+
+            if (!res.ok) { throw new Error(result.message); }
+
+            setUser(result.data);
+        } catch (error) {
+            console.error('Error fetching data:', error.message);
+        }
+    };
+
+    useEffect(() => {
+        if (userls && userls._id) {
+            getData();
+        }
+    }, [userls]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -60,8 +83,19 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-            <Link href="/login" className="btn btn-theme mr-3 d-sm-inline-block d-none"><span>Login</span></Link>
-            <Link href="/login?signin=true" className="btn btn-theme d-sm-inline-block d-none"><span>Signin</span></Link>
+            {user ? (
+                <>
+                    <span className="mr-3 d-sm-inline-block d-none text-white">Welcome, {user.name}</span>
+                    <Link href="/dashboard" className="btn btn-theme mr-3 d-sm-inline-block d-none"><Speedometer /></Link>
+                    <Link href="/logout" className="btn btn-theme d-sm-inline-block d-none"><BoxArrowRight /></Link>
+                </>
+            ) : (
+                <>
+                    <Link href="/login" className="btn btn-theme mr-3 d-sm-inline-block d-none"><span>Login</span></Link>
+                    <Link href="/login?signin=true" className="btn btn-theme d-sm-inline-block d-none"><span>Signin</span></Link>
+                </>
+            )}
+
         </header >
     )
 }

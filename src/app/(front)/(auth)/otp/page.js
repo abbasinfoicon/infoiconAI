@@ -1,8 +1,37 @@
 'use client'
+import FetchData from '@/components/FetchApi';
 import Link from 'next/link'
-import React from 'react'
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const OTP = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const email = searchParams.get('email');
+    const [otp, setOtp] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const body = { email, otp }
+            const res = await FetchData({ url: 'auth/emailVerify', method: "POST", body });
+            const result = await res.json();
+
+            if (!res.ok) {
+                toast.error(result.message);
+                throw new Error(result.message);
+            }
+
+            router.push('/login');
+            toast.success(result.message);
+
+        } catch (error) {
+            console.error("error", error);
+        }
+    }
+
     return (
         <section className="login-section">
             <Link href="/" className='logo-auth flex items-center gap-3 text-xl'><img src="/assets/images/logo.png" className="img-fluid " /> InfoiconAI</Link>
@@ -20,13 +49,14 @@ const OTP = () => {
                     <div className="login-box mt-sm-0">
                         <div>
                             <h2><span>Verification code</span></h2>
-                            <p>Enter the OTP send to ka****@gmail.com</p>
-                            <form className="auth-form">
+                            <p>Enter the OTP send to {email}</p>
+                            <form className="auth-form" onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="otp" className="form-label">OTP</label>
-                                    <input type="number" max="6" placeholder="Enter 6 digit code" className="form-control" id="otp"/>
+                                    <input type="number" name='otp' value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="Enter 6 digit code" className="form-control" />
                                 </div>
-                                <button data-cursor="pointer" className="btn-solid btn-absolute text-center mt-3">Submit</button>
+                                <button type='submit' data-cursor="pointer" className="btn-solid btn-absolute text-center mt-3">Submit</button>
+                                <h4 className="text-title text-center mt-2">Already have an account <Link href="/login" className='mainColor'>Sign in</Link></h4>
                             </form>
                         </div>
                     </div>

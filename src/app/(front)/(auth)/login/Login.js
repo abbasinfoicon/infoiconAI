@@ -1,8 +1,8 @@
 'use client'
+import LoginForm from '@/components/home/LoginForm'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
-import { Envelope, Lock, LockFill, Person } from 'react-bootstrap-icons'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 
 const Login = () => {
@@ -39,77 +39,10 @@ const Login = () => {
                                 </TabList>
 
                                 <TabPanel>
-                                    <form className="auth-form">
-                                        <div className="mb-3 form-group">
-                                            <label htmlFor="emailid" className="form-label">Email ID</label>
-                                            <div className="relative">
-                                                <Envelope className='iconsax' />
-                                                <input type="email" placeholder="Enter your mail id" className="form-control" id="emailid" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-2 form-group">
-                                            <label htmlFor="password" className="form-label">Password</label>
-                                            <div className="relative">
-                                                <Lock className="iconsax" />
-                                                <input placeholder="Enter your password" type="password" className="form-control" id="password" />
-                                            </div>
-                                        </div>
-
-                                        <div className="text-end">
-                                            <Link href="/reset-password">Forget Password?</Link>
-                                        </div>
-
-                                        <button className="btn-solid w-100 text-center mt-3">Log me in</button>
-                                        <h4 className="text-title text-center mt-2">Don’t have an account ? <button onClick={changeSignup} className='mainColor'>Signup</button></h4>
-
-                                        <div className="divider">
-                                            <h3>or sign in with</h3>
-                                        </div>
-
-                                        <ul className="social-btn">
-                                            <li><Link href="https://www.google.com/"><img src="/assets/svg/google.svg" className="img-fluid" />Continue with google</Link></li>
-                                            <li><Link href="https://www.apple.com/"><img src="/assets/svg/apple.svg" className="img-fluid" />Continue with apple</Link></li>
-                                        </ul>
-                                    </form>
+                                    <LoginForm page="login" changeSignup={changeSignup} />
                                 </TabPanel>
                                 <TabPanel>
-                                    <form className="auth-form">
-                                        <div className="mb-3 form-group">
-                                            <label htmlFor="name" className="form-label">Name</label>
-                                            <div className="relative">
-                                                <Person className="iconsax" />
-                                                <input type="name" placeholder="Enter your name" className="form-control" id="name" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-3 form-group">
-                                            <label htmlFor="emailid" className="form-label">Email ID</label>
-                                            <div className="relative">
-                                                <Envelope className='iconsax' />
-                                                <input type="email" placeholder="Enter your mail id" className="form-control" id="emailid" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-3 form-group">
-                                            <label htmlFor="password" className="form-label">Password</label>
-                                            <div className="relative">
-                                                <Lock className="iconsax" />
-                                                <input placeholder="Enter your password" type="password" className="form-control" id="password" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-3 form-group">
-                                            <label htmlFor="password1" className="form-label">Confirm Password</label>
-                                            <div className="relative">
-                                                <LockFill className="iconsax" />
-                                                <input placeholder="Enter your password" type="password" className="form-control" id="password1" />
-                                            </div>
-                                        </div>
-
-                                        <button className="btn-solid w-100 text-center mt-4">Sign up</button>
-                                        <h4 className="text-title text-center mt-2">Already have an account <button onClick={() => setTabIndex(0)} className='mainColor'>Sign in</button></h4>
-                                    </form>
+                                    <LoginForm page="register" />
                                 </TabPanel>
                             </Tabs>
                         </div>

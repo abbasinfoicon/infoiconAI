@@ -1,4 +1,4 @@
-import Breadcrumb from '@/app/components/Breadcrumb'
+import Breadcrumb from '@/components/Breadcrumb'
 import React from 'react'
 
 const Contact = () => {
